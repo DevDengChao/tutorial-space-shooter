@@ -1,15 +1,17 @@
-﻿using System;
+using System;
 using UnityEngine;
-
-[Serializable]
-public class Done_Boundary
-{
-    public float xMin, xMax, zMin, zMax;
-}
 
 public class Done_PlayerController : MonoBehaviour
 {
-    public Done_Boundary boundary;
+    private AudioSource _audioSource;
+
+    /// <summary>
+    ///     the minimal timestamp in millisecond for next fire
+    /// </summary>
+    private float _nextFire;
+
+    private Rigidbody _rigidbody;
+    public DoneBoundary boundary;
     public float fireRate;
 
     private float nextFire;

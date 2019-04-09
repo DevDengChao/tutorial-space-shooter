@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Done_EvasiveManeuver : MonoBehaviour
 {
-    public Done_Boundary boundary;
+    public DoneBoundary boundary;
 
     private float currentSpeed;
     public float dodge;
