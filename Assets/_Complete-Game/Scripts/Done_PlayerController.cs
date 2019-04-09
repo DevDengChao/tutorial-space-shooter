@@ -1,8 +1,10 @@
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Done_PlayerController : MonoBehaviour
 {
+    /// <summary>
+    ///     the audio source used to play 'weapon' audio clip
+    /// </summary>
     private AudioSource _audioSource;
 
     /// <summary>
@@ -14,21 +16,28 @@ public class Done_PlayerController : MonoBehaviour
     public DoneBoundary boundary;
     public float fireRate;
 
-    private float nextFire;
-
+    /// <summary>
+    ///     the bullet object
+    /// </summary>
     public GameObject shot;
+
     public Transform shotSpawn;
     public float speed;
     public float tilt;
 
+    private void Start()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+        _audioSource = GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time > nextFire)
-        {
-            nextFire = Time.time + fireRate;
-            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-            GetComponent<AudioSource>().Play();
-        }
+        if (!Input.GetButton("Fire1") || !(Time.time > _nextFire)) return;
+
+        _nextFire = Time.time + fireRate;
+        Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+        _audioSource.Play();
     }
 
     private void FixedUpdate()
@@ -37,15 +46,15 @@ public class Done_PlayerController : MonoBehaviour
         var moveVertical = Input.GetAxis("Vertical");
 
         var movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        GetComponent<Rigidbody>().velocity = movement * speed;
+        _rigidbody.velocity = movement * speed;
 
-        GetComponent<Rigidbody>().position = new Vector3
+        _rigidbody.position = new Vector3
         (
-            Mathf.Clamp(GetComponent<Rigidbody>().position.x, boundary.xMin, boundary.xMax),
+            Mathf.Clamp(_rigidbody.position.x, boundary.xMin, boundary.xMax),
             0.0f,
-            Mathf.Clamp(GetComponent<Rigidbody>().position.z, boundary.zMin, boundary.zMax)
+            Mathf.Clamp(_rigidbody.position.z, boundary.zMin, boundary.zMax)
         );
 
-        GetComponent<Rigidbody>().rotation = Quaternion.Euler(0.0f, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
+        _rigidbody.rotation = Quaternion.Euler(0.0f, 0.0f, _rigidbody.velocity.x * -tilt);
     }
 }
