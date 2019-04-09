@@ -1,26 +1,25 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 using UnityEngine.UI;
 
 public class Done_GameController : MonoBehaviour
 {
-    public GameObject[] hazards;
-    public Vector3 spawnValues;
+    private bool gameOver;
+    public Text gameOverText;
     public int hazardCount;
+    public GameObject[] hazards;
+    private bool restart;
+    public Text restartText;
+    private int score;
+
+    public Text scoreText;
+    public Vector3 spawnValues;
     public float spawnWait;
     public float startWait;
     public float waveWait;
 
-    public Text scoreText;
-    public Text restartText;
-    public Text gameOverText;
-
-    private bool gameOver;
-    private bool restart;
-    private int score;
-
-    void Start()
+    private void Start()
     {
         gameOver = false;
         restart = false;
@@ -31,30 +30,28 @@ public class Done_GameController : MonoBehaviour
         StartCoroutine(SpawnWaves());
     }
 
-    void Update()
+    private void Update()
     {
         if (restart)
-        {
             if (Input.GetKeyDown(KeyCode.R))
-            {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-        }
     }
 
-    IEnumerator SpawnWaves()
+    private IEnumerator SpawnWaves()
     {
         yield return new WaitForSeconds(startWait);
         while (true)
         {
-            for (int i = 0; i < hazardCount; i++)
+            for (var i = 0; i < hazardCount; i++)
             {
-                GameObject hazard = hazards[Random.Range(0, hazards.Length)];
-                Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
-                Quaternion spawnRotation = Quaternion.identity;
+                var hazard = hazards[Random.Range(0, hazards.Length)];
+                var spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y,
+                    spawnValues.z);
+                var spawnRotation = Quaternion.identity;
                 Instantiate(hazard, spawnPosition, spawnRotation);
                 yield return new WaitForSeconds(spawnWait);
             }
+
             yield return new WaitForSeconds(waveWait);
 
             if (gameOver)
@@ -72,7 +69,7 @@ public class Done_GameController : MonoBehaviour
         UpdateScore();
     }
 
-    void UpdateScore()
+    private void UpdateScore()
     {
         scoreText.text = "Score: " + score;
     }
