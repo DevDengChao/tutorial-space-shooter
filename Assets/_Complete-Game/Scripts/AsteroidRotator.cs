@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class RandomRotator : MonoBehaviour
+public class AsteroidRotator : MonoBehaviour
 {
     public float tumble;
 

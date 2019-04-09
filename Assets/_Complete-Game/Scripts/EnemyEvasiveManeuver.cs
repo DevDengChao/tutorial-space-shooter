@@ -2,12 +2,12 @@ using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
-public class EvasiveManeuver : MonoBehaviour
+public class EnemyEvasiveManeuver : MonoBehaviour
 {
     private float _currentSpeed;
     private Rigidbody _rigidbody;
     private float _targetManeuver;
-    public DoneBoundary boundary;
+    public Boundary boundary;
     public float dodge;
     public Vector2 maneuverTime;
     public Vector2 maneuverWait;

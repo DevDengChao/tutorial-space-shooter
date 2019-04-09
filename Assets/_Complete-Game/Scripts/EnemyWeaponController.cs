@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class WeaponController : MonoBehaviour
+public class EnemyWeaponController : MonoBehaviour
 {
     public float delay;
     public float fireRate;

@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public class DoneBoundary
+public class Boundary
 {
     public float xMin, xMax, zMin, zMax;
 }

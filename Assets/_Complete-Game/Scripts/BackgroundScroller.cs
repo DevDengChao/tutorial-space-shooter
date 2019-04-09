@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class BGScroller : MonoBehaviour
+public class BackgroundScroller : MonoBehaviour
 {
     private Vector3 _startPosition;
     public float scrollSpeed;

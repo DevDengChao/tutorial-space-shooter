@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private float _nextFire;
 
     private Rigidbody _rigidbody;
-    public DoneBoundary boundary;
+    public Boundary boundary;
     public float fireRate;
 
     /// <summary>
