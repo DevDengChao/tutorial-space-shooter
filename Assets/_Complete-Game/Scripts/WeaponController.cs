@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Done_WeaponController : MonoBehaviour
+public class WeaponController : MonoBehaviour
 {
     public float delay;
     public float fireRate;
@@ -9,7 +9,7 @@ public class Done_WeaponController : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("Fire", delay, fireRate);
+        InvokeRepeating(nameof(Fire), delay, fireRate);
     }
 
     private void Fire()

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Done_DestroyByTime : MonoBehaviour
+public class DestroyByTimeToLive : MonoBehaviour
 {
     public float lifetime;
 

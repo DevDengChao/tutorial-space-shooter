@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Done_GameController : MonoBehaviour
+public class GameController : MonoBehaviour
 {
     private bool gameOver;
     public Text gameOverText;

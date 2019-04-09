@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Done_PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     /// <summary>
     ///     the audio source used to play 'weapon' audio clip
